@@ -689,6 +689,8 @@ The CPU cost of a world scales with the number of **actors and components**, not
 
 ### 19.7 Hair and fur (Groom)
 
+For MetaHumans specifically (LODSync, RigLogic, grooms, crowds), see [`MetaHumans_Guide.md`](MetaHumans_Guide.md).
+
 - Use **strands** only for the hero character on High and Epic, and **hair cards** or meshes on Medium and at distance.
 - Set **Groom LODs** with screen sizes: strands at LOD0, cards at LOD1+. Budget strands the same way as expensive translucency.
 
@@ -839,7 +841,7 @@ GetWorld()->AsyncLineTraceByChannel(EAsyncTraceType::Single, Start, End,
 - Many overlapping DBuffer decals add up. Set *Fade Screen Size* on every decal.
 - Use **mesh decals** for large-scale grime, and scale the decal count with `r.DetailMode` per tier.
 
-**Audio**
+**Audio** (full guide: [`MetaSounds_Audio_Guide.md`](MetaSounds_Audio_Guide.md))
 - **Concurrency groups** per sound type (for example gunfire 8, footsteps 6, impacts 10) plus a global voice cap (64 in the base config). Use attenuation with **virtualization**: only important loops *Play when Silent*.
 - Stream music and long voice lines. Use cheap-to-decode compression (ADPCM/PCM) for very frequent short SFX.
 - Keep MetaSounds graphs lean. They run on the audio render thread.
