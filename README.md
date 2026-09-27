@@ -13,4 +13,4 @@ Unreal Engine docs, configs, .ini, components
 | `Docs/MetaHumans_Guide.md` | Using MetaHumans in games: LODSync, grooms (strands vs cards), RigLogic, merged bodies, textures, crowds (5.8 MetaHuman Collections) |
 | `Docs/MetaSounds_Audio_Guide.md` | Optimizing MetaSounds and audio: lean graphs, voice lifetime, concurrency, compression and streaming, occlusion, submix effects |
 | `Templates/UE.gitattributes` | Git LFS setup with file locking for Unreal projects |
-| `Tools/` | Scripts that generate the 120 fps and UE 5.8 scalability files, and `validate_configs.py` to check tier consistency and cvar priority |
+| `Tools/` | **`ue_asset_audit.py`**: CLI that shows which assets your selected levels really ship (with dependencies), their size, why each is included, unused content and size budgets. Also the scalability generators and `validate_configs.py` ([README](Tools/README.md)) |

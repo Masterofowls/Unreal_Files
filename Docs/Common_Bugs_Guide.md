@@ -540,6 +540,8 @@ The editor loads things a packaged build doesn't. The usual differences:
 
 **Prevention:** make a **packaged build weekly** (ideally in CI) and play it, not only PIE. Waiting until release finds a month of problems at once.
 
+**Package too big, or unsure what gets cooked?** Run `Tools/ue_asset_audit.py`. It lists everything your levels pull in (with the reference chain for each asset), broken references, unused content, and cooked-but-unneeded packages, and can fail CI on a size budget. See [`Tools/README.md`](../Tools/README.md).
+
 ---
 
 ## 15. Crashes
