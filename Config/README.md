@@ -4,9 +4,19 @@ A drop-in set of `.ini` files for UE 5.3 – 5.7 projects (Nanite + Lumen + Virt
 
 | File | What it controls |
 |---|---|
-| `DefaultEngine.ini` | Project-wide settings that don't change with quality presets: rendering pipeline, PSO precaching, async loading, GC, threading, audio, networking |
+| `DefaultEngine.ini` | Project-wide settings that don't change with quality presets: rendering pipeline, PSO precaching, async loading, GC, physics, threading, audio, networking |
 | `DefaultScalability.ini` | Low / Medium / High / Epic / Cine quality tiers for shadows, GI, reflections, post-processing, textures, effects, foliage and AA |
 | `DefaultGame.ini` | Packaging settings: IoStore, Oodle compression, shared shader code (needed for PSO bundles) |
+
+## 120 fps profile
+
+`Profiles/120FPS/` retunes the tiers for a stable 120 fps: **High** on 8 GB GPUs with a Core i5 / Ryzen 5, and **Medium** on lower hardware with Lumen, VSM and fog kept on. It adds dynamic resolution with an 8.33 ms budget. The full instructions are in [`Docs/120FPS_Guide.md`](../Docs/120FPS_Guide.md).
+
+| File | How to use it |
+|---|---|
+| `Profiles/120FPS/DefaultScalability.ini` | Replaces `DefaultScalability.ini` |
+| `Profiles/120FPS/DefaultEngine_120FPS.ini` | Merge its sections into `DefaultEngine.ini` |
+| `Profiles/120FPS/DefaultGameUserSettings.ini` | Copy to `Config/`: 120 fps cap, VSync off, dynamic resolution on |
 
 ## Install
 
