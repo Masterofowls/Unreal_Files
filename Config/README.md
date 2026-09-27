@@ -7,6 +7,7 @@ A drop-in set of `.ini` files for UE 5.3 – 5.7 projects (Nanite + Lumen + Virt
 | `DefaultEngine.ini` | Project-wide settings that don't change with quality presets: rendering pipeline, PSO precaching, async loading, GC, physics, threading, audio, networking |
 | `DefaultScalability.ini` | Low / Medium / High / Epic / Cine quality tiers for shadows, GI, reflections, post-processing, textures, effects, foliage and AA |
 | `DefaultGame.ini` | Packaging settings: IoStore, Oodle compression, shared shader code (needed for PSO bundles) |
+| `DefaultEditorPerProjectUserSettings.ini` | Safe Live Coding defaults for the team (no reinstancing), which prevent Blueprint corruption. See `Docs/Common_Bugs_Guide.md` |
 
 ## 120 fps profile
 
