@@ -1,12 +1,13 @@
 # Reusable performance config for Unreal Engine 5
 
-A drop-in set of `.ini` files for UE 5.3 – 5.7 projects (Nanite + Lumen + Virtual Shadow Maps + TSR) tuned for frame time, smooth frame pacing and fast loading.
+A drop-in set of `.ini` files for UE 5.3 – 5.8 projects (Nanite + Lumen + Virtual Shadow Maps + TSR) tuned for frame time, smooth frame pacing and fast loading.
 
 | File | What it controls |
 |---|---|
 | `DefaultEngine.ini` | Project-wide settings that don't change with quality presets: rendering pipeline, PSO precaching, async loading, GC, physics, threading, audio, networking |
 | `DefaultScalability.ini` | Low / Medium / High / Epic / Cine quality tiers for shadows, GI, reflections, post-processing, textures, effects, foliage and AA |
 | `DefaultGame.ini` | Packaging settings: IoStore, Oodle compression, shared shader code (needed for PSO bundles) |
+| `DefaultEditorPerProjectUserSettings.ini` | Safe Live Coding defaults for the team (no reinstancing), which prevent Blueprint corruption. See `Docs/Common_Bugs_Guide.md` |
 
 ## 120 fps profile
 
@@ -17,6 +18,16 @@ A drop-in set of `.ini` files for UE 5.3 – 5.7 projects (Nanite + Lumen + Virt
 | `Profiles/120FPS/DefaultScalability.ini` | Replaces `DefaultScalability.ini` |
 | `Profiles/120FPS/DefaultEngine_120FPS.ini` | Merge its sections into `DefaultEngine.ini` |
 | `Profiles/120FPS/DefaultGameUserSettings.ini` | Copy to `Config/`: 120 fps cap, VSync off, dynamic resolution on |
+
+## UE 5.8 profiles
+
+`Profiles/UE58/` holds the 5.8 variants. In 5.8, Medium uses **Lumen Lite**, and the 60 fps base profile would otherwise turn Lumen off at Medium and block it. Details are in [`Docs/UE58_Guide.md`](../Docs/UE58_Guide.md).
+
+| File | How to use it |
+|---|---|
+| `Profiles/UE58/60FPS/DefaultScalability.ini` | Replaces `DefaultScalability.ini` in 5.8 projects |
+| `Profiles/UE58/120FPS/DefaultScalability.ini` | Replaces the 120 fps `DefaultScalability.ini` in 5.8 projects |
+| `Profiles/UE58/DefaultEngine_UE58.ini` | Merge its sections into `DefaultEngine.ini`: strips MegaLights shaders when unused, plus opt-in 5.8 switches |
 
 ## Install
 

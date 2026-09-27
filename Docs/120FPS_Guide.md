@@ -4,6 +4,8 @@ This guide covers two targets. The first is a stable 120 fps on **High** on the 
 
 It assumes UE 5.3 to 5.7 and Windows with DX12 and SM6. It builds on the configs in `Config/` and the 120 fps profile in `Config/Profiles/120FPS/`.
 
+> **On UE 5.8?** Use the 5.8 profile variants in `Config/Profiles/UE58/` and read [`UE58_Guide.md`](UE58_Guide.md). Medium uses Lumen Lite there, which gives Tier B much more headroom. Lighting and post-processing are covered in depth in [`Lighting_PostProcess_Guide.md`](Lighting_PostProcess_Guide.md).
+
 > **Read this first.** At 120 fps every frame has to finish in **8.33 ms** on the CPU *and* the GPU, which is half the 60 fps budget. Config files alone can't get you there. About a third of the work is config (this repo), a third is content budgets (sections 5–10 and 16–22) and a third is CPU work (sections 12, 18–21). Every number here is a **starting budget**. Measure your own game on real Tier A and Tier B machines and adjust.
 
 ---
@@ -344,7 +346,7 @@ Medium keeps **High material quality** (`r.MaterialQualityLevel=1`), so the mate
   - Lens flares off by default.
   - Depth of field only in cinematics or aiming, not during gameplay.
   - Motion blur stays on (it's cheap and at 120 fps it's subtle).
-  - Most post passes run at internal resolution, so they cost less at 120 fps.
+  - DOF and motion blur run at internal resolution, so they get cheaper with dynamic resolution. Bloom, tonemapping and post materials after the upscaler run at output resolution (`Lighting_PostProcess_Guide.md` section 9.1).
 
 ---
 
@@ -687,6 +689,8 @@ The CPU cost of a world scales with the number of **actors and components**, not
 
 ### 19.7 Hair and fur (Groom)
 
+For MetaHumans specifically (LODSync, RigLogic, grooms, crowds), see [`MetaHumans_Guide.md`](MetaHumans_Guide.md).
+
 - Use **strands** only for the hero character on High and Epic, and **hair cards** or meshes on Medium and at distance.
 - Set **Groom LODs** with screen sizes: strands at LOD0, cards at LOD1+. Budget strands the same way as expensive translucency.
 
@@ -837,7 +841,7 @@ GetWorld()->AsyncLineTraceByChannel(EAsyncTraceType::Single, Start, End,
 - Many overlapping DBuffer decals add up. Set *Fade Screen Size* on every decal.
 - Use **mesh decals** for large-scale grime, and scale the decal count with `r.DetailMode` per tier.
 
-**Audio**
+**Audio** (full guide: [`MetaSounds_Audio_Guide.md`](MetaSounds_Audio_Guide.md))
 - **Concurrency groups** per sound type (for example gunfire 8, footsteps 6, impacts 10) plus a global voice cap (64 in the base config). Use attenuation with **virtualization**: only important loops *Play when Silent*.
 - Stream music and long voice lines. Use cheap-to-decode compression (ADPCM/PCM) for very frequent short SFX.
 - Keep MetaSounds graphs lean. They run on the audio render thread.
